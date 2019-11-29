@@ -6,11 +6,11 @@ from django.core.paginator import Paginator
 
 def index(request, num=1):
 	data = Nogizaka.objects.all()
-	##page = Paginator(data,3)
+	page = Paginator(data,3)
 	params = {
 		"title":"やっはろー",
-		"message":"",
-		##"data":page.get_page(num)
+		"message":"Welcome to heacet-django application!!",
+		"data":page.get_page(num)
 	}
 	return render(request, 'heacet/index.html', params)
 
@@ -93,7 +93,7 @@ def sql_find(request):
 		member = Nogizaka.objects.raw(sql)
 		msg = sql
 	else:
-		msg = 'serch words...'
+		msg = '例で言うと『age < 20』とか『age == 20』で検索できます。'
 		form = FindForm()
 		member = Nogizaka.objects.all()
 	params = {
