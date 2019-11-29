@@ -7,6 +7,10 @@ table{
 	font-size: 14pt;
 }
 
+.chon table tr th{
+	background: rgb(153, 0, 51);
+}
+
 table tr th {
 	background: #009;
 	color: white;
