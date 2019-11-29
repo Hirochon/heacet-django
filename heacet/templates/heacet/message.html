@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="{% static 'heacet/css/style.css' %}" />
+	<title>{{ title }}</title>
+</head>
+<body>
+	<table>
+		<form action="{% url 'message' %}" method="post">
+			{% csrf_token %}
+			{{form}}
+			<tr><th></th><td><input type="submit" value="送信する"></td></tr>
+		</form>
+	</table>
+	<hr />
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Name</th>
+			<th>Age</th>
+			<th>datetime</th>
+		</tr>
+	{% for item in data %}
+		<tr>
+			<td>{{item.title}}</td>
+			<td>{{item.friend.name}}</td>
+			<td>{{item.friend.age}}</td>
+			<td>{{item.pub_date}}</td>
+		</tr>
+	{% endfor %}
+	</table>
+	<div>
+		{% if data.has_previous %}
+			<a href="{% url 'message' %}{{data.previous_page_number}}">&laquo;prev</a>
+		{% endif %}
+		{% if data.has_next %}
+			<a href="{% url 'message' %}{{data.next_page_number}}">next&raquo;</a>
+		{% endif %}
+	</div>
+</body>
+</html>

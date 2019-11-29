@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="{% static 'heacet/css/style.css' %}" />
+	<title>{{ title }}</title>
+</head>
+<body>
+	<p>{{ message|safe }}</p>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>NAME</th>
+			<th>GENDER</th>
+			<th>MAIL</th>
+			<th>AGE</th>
+			<th>BIRTHDAY</th>
+			<th>MESSAGE</th>
+			<th></th>
+			<th></th>
+		</tr>
+	{% for member in data %}
+		<tr>
+			<td>{{member.id}}</td>
+			<td>{{member.name}}</td>
+			<td>{% if member.gender == False %}male{% endif %}
+				{% if member.gender == True %}female{% endif %}</td>
+			<td>{{member.mail}}</td>
+			<td>{{member.age}}</td>
+			<td>{{member.birthday}}</td>
+			<td><ol>
+				{% for ob in member.message_set.all %}
+				<li>{{ob.title}}
+					<ul>
+						<li>{{ob.content}}</li>
+					</ul></li>
+				{% endfor %}
+			</ol></td>
+			<td><a href="{% url 'edit' member.id %}">Edit</a></td>
+			<td><a href="{% url 'delete' member.id %}">Delete</a></td>
+		</tr>
+	{% endfor %}
+	</table>
+	<div class="pagination">
+		{% if data.has_previous %}
+			<a href="{% url 'index' %}">&laquo;first</a>
+			<a href="{% url 'index' %}{{data.previous_page_number}}">&laquo;prev</a>
+		{% endif %}
+		<span class="current">
+			[{{data.number}}/{{data.paginator.num_pages}}]
+		</span>
+		{% if data.has_next %}
+			<a href="{% url 'index' %}{{data.next_page_number}}">next&raquo;</a>
+			<a href="{% url 'index' %}{{data.paginator.num_pages}}">last&raquo;</a>
+		{% endif %}
+	</div>
+</body>
+</html>
