@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="{% static 'heacet/css/style.css' %}" />
+	<title>{{title}}</title>
+</head>
+<body>
+	<p>※以下のレコードを削除します。</p>
+	<table>
+		<tr>
+			<th>ID</th><td>{{member.id}}</td>
+		</tr>
+		<tr>
+			<th>Name</th><td>{{member.name}}</td>
+		</tr>
+		<tr>
+			<th>Gender</th><td>{% if member.gender == True %}female{% endif %}
+				{% if member.gender == False %}male{% endif %}</td>
+		</tr>
+		<tr>
+			<th>Email</th><td>{{member.mail}}</td>
+		</tr>
+		<tr>
+			<th>Age</th><td>{{member.age}}</td>
+		</tr>
+		<tr>
+			<th>Birth</th><td>{{member.birthday}}</td>
+		</tr>
+		<form action="{% url 'delete' member.id %}" method="post">
+			{% csrf_token %}
+			<tr><th></th><td><input type="submit" value="click"></td></tr>
+		</form>
+	</table>
+</body>
+</html>

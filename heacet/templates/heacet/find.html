@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="{% static 'heacet/css/style.css' %}" />
+	<title>{{ title }}</title>
+</head>
+<body>
+	<p>{{ msg|safe }}</p>
+	<table>
+		<form action="{% url 'sfind' %}" method="post"> <!-- find ⇒ sfindにした -->
+			{% csrf_token %}
+			{{form}}
+			<tr><th></th><td><input type="submit" value="くりっく"></td></tr>
+		</form>
+	</table>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>NAME</th>
+			<th>GENDER</th>
+			<th>MAIL</th>
+			<th>AGE</th>
+			<th>BIRTHDAY</th>
+			<th></th>
+			<th></th>
+		</tr>
+	{% for member in data %}
+		<tr>
+			<td>{{member.id}}</td>
+			<td>{{member.name}}</td>
+			<td>{% if member.gender == False %}male{% endif %}
+				{% if member.gender == True %}female{% endif %}</td>
+			<td>{{member.mail}}</td>
+			<td>{{member.age}}</td>
+			<td>{{member.birthday}}</td>
+			<td><a href="{% url 'edit' member.id %}">Edit</a></td>
+			<td><a href="{% url 'delete' member.id %}">Delete</a></td>
+		</tr>
+	{% endfor %}
+	</table>
+</body>
+</html>
