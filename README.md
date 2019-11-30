@@ -15,6 +15,6 @@ PythonのフレームワークDjangoを用いて、CRUD、検索、クエリ検�
 	1. python manage.py makemigrations heacet
 	2. python manage.py migrate
 2. 次に以下のコマンドにてIDとメールアドレス、パスワードを設定してください。
-	1. python createsupeuser
+	1. python manage.py createsuperuser
 3. localhost:8000/adminにアクセスしていただき、ログインを行ってください。
 4. Nogizakasのデータを3人以上登録していただくと、アプリケーションを使用することができます。
