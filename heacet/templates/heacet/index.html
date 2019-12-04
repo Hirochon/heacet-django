@@ -10,24 +10,27 @@
 </head>
 <body>
 	<h1>{{ message|safe }}</h1>
-	<table>
-		<tr>
-			<th>メンバーを追加⇒</th>
-			<td><a href="{% url 'create' %}">くりえいとぺーじへ</a></td>
-		</tr>
-		<tr>
-			<th>SQLでメンバーを見つける⇒</th>
-			<td><a href="{% url 'sfind' %}">メンバー一覧へ</a></td>
-		</tr>
-		<tr>
-			<th>メッセージを書く⇒</th>
-			<td><a href="{% url 'message' %}">メッセージ投稿ぺーじへ</a></td>
-		</tr>
-		<tr>
-			<th>メンバー追加できるかチェック⇒</th>
-			<td><a href="{% url 'check' %}">ばりでーしょんちぇっくへ</a></td>
-		</tr>
-	</table>
+	<div class="chon">
+		<table>
+			<tr>
+				<th>メンバーを追加⇒</th>
+				<td><a href="{% url 'create' %}">くりえいとぺーじへ</a></td>
+			</tr>
+			<tr>
+				<th>SQLでメンバーを見つける⇒</th>
+				<td><a href="{% url 'sfind' %}">メンバー一覧へ</a></td>
+			</tr>
+			<tr>
+				<th>メッセージを書く⇒</th>
+				<td><a href="{% url 'message' %}">メッセージ投稿ぺーじへ</a></td>
+			</tr>
+			<tr>
+				<th>メンバー追加できるかチェック⇒</th>
+				<td><a href="{% url 'check' %}">ばりでーしょんちぇっくへ</a></td>
+			</tr>
+		</table>
+	</div>
+	<hr />
 	<table>
 		<tr>
 			<th>ID</th>
